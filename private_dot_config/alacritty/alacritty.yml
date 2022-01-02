@@ -1,0 +1,149 @@
+env:
+  TERM: xterm-256color
+
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+  padding:
+    x: 0
+    y: 0
+
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: true
+  decorations: full
+  startup_mode: Windowed
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+# Font configuration (changes require restart)
+font:
+  # Normal (roman) font face
+  normal:
+    # family: Iosevka Term
+    # family: Menlo
+    # family: JetBrains Mono
+    family: Monego
+    # family: Victor Mono
+    # family: Fira Code
+    # style: Extended
+    # style: Retina
+    # style: Light Extended 
+    # style: Light
+  bold:
+    # family: JetBrains Mono
+    family: Monego
+    # family: Victor Mono
+    # family: Fira Code
+    # family: Menlo
+    # The `style` can be specified to pick a specific face.
+    style: Bold
+  italic:
+    # family: Menlo
+    # family: Victor Mono
+    # family: JetBrains Mono
+    family: Monego
+    # family: Fira Sans
+    # The `style` can be specified to pick a specific face.
+    style: Italic
+  size: 12
+  offset:
+      x: 0
+      y: 2
+  glyph_offset:
+    x: 0
+    y: 0
+  use_thin_strokes: true
+
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+# Colors (Gruvbox dark)
+colors:
+  primary:
+    hard contrast: background = '0x1d2021'
+    # background: "0x282828"
+    # background: "0x0A0E14"
+    background: "0x151515"
+    soft contrast: background = '0x32302f'
+    # foreground: "0xebdbb2"
+    # foreground: "0xB3B1AD"
+    foreground: "#e4e4e4"
+
+  # # Cursor volors
+  # cursor:
+  #   text: '#feffff'
+  #   cursor: '#ffb472'
+
+  # # Normal colors
+  # normal:
+  #   black:   '#a3a3a3'
+  #   red:     '#e98885'
+  #   # green:   '#a3c38b'
+  #   # green:   '#799d6a'
+  #   green:   '#799d6a'
+  #   # yellow:  '#ffc68d'
+  #   yellow:  '#fad07a'
+  #   # blue:    '#a6cae2'
+  #   blue:    '#8197bf'
+  #   magenta: '#e7cdfb'
+  #   cyan:    '#00a69f'
+  #   white:   '#e4e4e4'
+
+  # # Bright colors
+  # bright:
+  #   black:   '#c8c8c8'
+  #   red:     '#ffb2b0'
+  #   green:   '#c8e2b9'
+  #   yellow:  '#fad07a'
+  #   blue:    '#bddff7'
+  #   magenta: '#fce2ff'
+  #   cyan:    '#0bbdb6'
+  #   white:   '#feffff'
+
+  # # Selection colors
+  # selection:
+  #   text: '#5963a2'
+  #   background: '#f6f6f6'
+
+  # Normal colors
+  normal:
+    black: '0x01060E'
+    red: '0xEA6C73'
+    green: '0x91B362'
+    yellow: '0xF9AF4F'
+    blue: '0x53BDFA'
+    magenta: '0xFAE994'
+    cyan: '0x90E1C6'
+    white: '0xC7C7C7'
+
+  # Bright colors
+  bright:
+    black: '0x686868'
+    red: '0xF07178'
+    green: '0xC2D94C'
+    yellow: '0xFFB454'
+    blue: '0x59C2FF'
+    magenta: '0xFFEE99'
+    cyan: '0x95E6CB'
+    white: '0xFFFFFF'
+
+mouse:
+  hide_when_typing: false
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: false
+
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+key_bindings:
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
