@@ -89,3 +89,8 @@ autocmd! bufwritepost init.vim source %
 " indentation
 set expandtab
 autocmd FileType vimwiki setlocal shiftwidth=2 tabstop=2
+
+" misc
+set noswapfile
+noremap : q:i
+noremap / q/i
