@@ -21,6 +21,8 @@ Plug 'michal-h21/vim-zettel'
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vim-rainbow-lists', {'branch': 'main'}
 
+" completion
+Plug 'lifepillar/vim-mucomplete'
 call plug#end()
 
 "------------------------------------------------------------------------------- 
