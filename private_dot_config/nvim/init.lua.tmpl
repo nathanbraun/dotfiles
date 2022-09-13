@@ -2,12 +2,12 @@ require "user.options"
 require "user.keymaps"
 require "user.plugins"
 require "user.colorscheme"
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 require "user.zk"
 require "user.vimwiki"
 require "user.snippets"
 require "user.treesitter"
-{{ end }}
+{{- end }}
 require "user.cmp"
 require "user.lsp"
 require "user.telescope"
