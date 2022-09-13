@@ -19,6 +19,19 @@ bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^p' history-beginning-search-backward
 bindkey '^n' history-beginning-search-forward
 
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
@@ -43,17 +56,21 @@ alias muxstart='tmuxinator start'
 eval "$(fasd --init auto)"
 
 # aliases
-alias pomo='noti pomodoro --simple && bm-inc -g pomodoro && dijo -c "track-up pomo"'
-alias pomo2="noti pomodoro --simple && bm-inc -g pomodoro && noti pomodoro --simple 5"
-alias lz="lazygit"
+# alias pomo='noti pomodoro --simple'
+# alias dash='noti pomodoro --simple 5'
+
+alias gg="lazygit"
+
+alias zc="cd /Users/nathanbraun/code/github.com/nathanbraun"
 
 export APY_ANKI_PATH=/Users/nathanbraun/anki/anki-2.1.40
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/Applications/Racket v8.5/bin"
 
 fpath=($HOME/.local/zsh-functions $fpath)
 
-export PATH=/opt/homebrew/bin:$PATH
+export PATH="/opt/homebrew/bin:$PATH"
 # function tn() (
 #     if [ -n "$1" ]
 #       then
@@ -62,3 +79,37 @@ export PATH=/opt/homebrew/bin:$PATH
 #          echo "no session name"
 #      fi
 #   )
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
+export PATH=/usr/local/smlnj/bin:"$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+tmux_jump() {
+    # starting in ~/code...
+    BASE="$HOME/code/github.com"
+    # ... look for directories exactly two levels deep (`~/code/owner/project`)
+    # and match them with fzf. In this case we break ties by favoring matches
+    # on the project name instead of the owner name (implementaion means
+    # favoring matches closer to the end of the string.) This is simplified a
+    # little bit with the `--select-1 --query="$1"` line: if there's only one
+    # match for the argument passed in as the first argument to this function,
+    # we select immediately instead of asking for an interactive selection.
+    SELECTED=$(find "$BASE" -mindepth 2 -maxdepth 2 -type d | sed "s|$BASE/||g" | fzf --tiebreak=end --select-1 --query="$1")
+
+    # fzf will exit with a non-zero code if you ctrl-c or ctrl-g out of
+    # it. We use this as a signal that we don't want to jump after all.
+    if [[ "$?" != 0 ]]; then echo "cancelling!"; return 1; fi
+
+    # call tmux-session on the *full* path to the matched project!
+    tmux-session "$BASE/$SELECTED"
+}
+
+# and alias this so I can just do `t bytes.zone` instead of having to type
+# tmux_jump every time.
+alias tj=tmux_jump
+alias ts=tmux-session
+
+alias ssh='TERM=xterm-256color \ssh'
