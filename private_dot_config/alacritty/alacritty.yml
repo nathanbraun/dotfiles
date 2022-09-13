@@ -22,31 +22,11 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    # family: Iosevka Term
-    # family: Menlo
-    # family: JetBrains Mono
-    family: Monego
-    # family: Victor Mono
-    # family: Fira Code
-    # style: Extended
-    # style: Retina
-    # style: Light Extended 
-    # style: Light
+    family: Monego Nerd Font Fix
   bold:
-    # family: JetBrains Mono
-    family: Monego
-    # family: Victor Mono
-    # family: Fira Code
-    # family: Menlo
-    # The `style` can be specified to pick a specific face.
-    style: Bold
+    family: Monego Nerd Font Fix
   italic:
-    # family: Menlo
-    # family: Victor Mono
-    # family: JetBrains Mono
-    family: Monego
-    # family: Fira Sans
-    # The `style` can be specified to pick a specific face.
+    family: Monego Nerd Font Fix
     style: Italic
   size: 12
   offset:
