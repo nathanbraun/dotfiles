@@ -34,4 +34,16 @@ function CustomListO()
 
 endfunction
 
-inoremap [[ [[<ESC> :ZettelSearch<CR>title:
+" function! ZettelTitleSearch()
+"    let g:zettel_fzf_command = "rg --column --line-number --smart-case --multiline --no-heading --color=always --regexp '^title: (.+)' --replace '$1'"
+"    ZettelOpen()
+"  endfunction
+
+"  nnoremap <leader>ot :call ZettelTitleSearch()<CR>
+
+"  function! ZettelFullSearch()
+"    let g:zettel_fzf_command = "rg --column --line-number --smart-case --multiline --no-heading --color=always"
+"    ZettelOpen()
+"  endfunction
+
+" nnoremap <leader>of :call ZettelFullSearch()<CR>
