@@ -32,9 +32,33 @@ keymap("v", "J", "<cmd>HopLineAC<CR>", opts)
 keymap("v", "H", "<cmd>HopWordBC<CR>", opts)
 keymap("v", "L", "<cmd>HopWordAC<CR>", opts)
 
+{{- if eq .chezmoi.os "darwin" }}
+
 -- vimwiki
 keymap("n", "<leader>wk", ":VimwikiDiaryPrevDay<CR>", opts)
 keymap("n", "<leader>wj", ":VimwikiDiaryNextDay<CR>", opts)
+
+-- links
+keymap("n", "<leader>lz", ":e ~/notes/zettelkasten.wiki<CR>", opts)
+keymap("n", "<leader>lw", ":e ~/notes/plan-220404-0803.wiki<CR>", opts)
+keymap("n", "<leader>ll", ":e ~/notes/210331-1521.wiki<CR>", opts)
+keymap("n", "<leader>ltb", ":e ~/notes/plan-210213-1520.wiki<CR>", opts)
+keymap("n", "<leader>ltm", ":e ~/notes/plan-220512-1527.wiki<CR>", opts)
+keymap("n", "<leader>lp", ":e ~/notes/plan-220511-1508.wiki<CR>", opts)
+keymap("n", "<leader>ls", ":e ~/notes/210104-2103.wiki<CR>", opts)
+keymap("n", "<leader>lcd", ":e ~/notes/201103-1510.wiki<CR>", opts)
+
+-- week notes
+keymap("n", "<leader>lw", ":e ~/notes/lks9.wiki<CR>", opts)
+
+-- week checklist
+keymap("n", "<leader>lcw", ":e ~/notes/w74x.wiki<CR>", opts)
+
+-- books
+keymap("n", "<leader>lk", ":e ~/notes/76oo.wiki<CR>", opts)
+
+{{- end }}
+
 
 -- Normal --
 
@@ -82,21 +106,3 @@ keymap("x", "<leader>s", "<Plug>SlimeRegionSend", {silent = true})
 
 keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
 
--- links
-keymap("n", "<leader>lz", ":e ~/notes/zettelkasten.wiki<CR>", opts)
-keymap("n", "<leader>lw", ":e ~/notes/plan-220404-0803.wiki<CR>", opts)
-keymap("n", "<leader>ll", ":e ~/notes/210331-1521.wiki<CR>", opts)
-keymap("n", "<leader>ltb", ":e ~/notes/plan-210213-1520.wiki<CR>", opts)
-keymap("n", "<leader>ltm", ":e ~/notes/plan-220512-1527.wiki<CR>", opts)
-keymap("n", "<leader>lp", ":e ~/notes/plan-220511-1508.wiki<CR>", opts)
-keymap("n", "<leader>ls", ":e ~/notes/210104-2103.wiki<CR>", opts)
-keymap("n", "<leader>lcd", ":e ~/notes/201103-1510.wiki<CR>", opts)
-
--- week notes
-keymap("n", "<leader>lw", ":e ~/notes/lks9.wiki<CR>", opts)
-
--- week checklist
-keymap("n", "<leader>lcw", ":e ~/notes/w74x.wiki<CR>", opts)
-
--- books
-keymap("n", "<leader>lk", ":e ~/notes/76oo.wiki<CR>", opts)
