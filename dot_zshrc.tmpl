@@ -70,13 +70,85 @@ zplug load
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
-{{end -}}
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
 
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
 
 # set editor
 export EDITOR=/opt/homebrew/bin/nvim
 export VISUAL=/opt/homebrew/bin/nvim
+
+# tmux aliases
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -t"
+alias tid='tmux display-message -p "#S"'
+function tk () {
+  tmux kill-session -t $(tmux display-message -p '#S')
+  docker kill $(docker ps -q) > /dev/null 2>&1
+}
+
+alias muxstart='tmuxinator start'
+
+alias zc="cd /Users/nathanbraun/code/github.com/nathanbraun"
+
+export APY_ANKI_PATH=/Users/nathanbraun/anki/anki-2.1.40
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/Applications/Racket v8.5/bin"
+
+fpath=($HOME/.local/zsh-functions $fpath)
+
+export PATH="/opt/homebrew/bin:$PATH"
+# function tn() (
+#     if [ -n "$1" ]
+#       then
+#          tmux switch -t $1
+#       else
+#          echo "no session name"
+#      fi
+#   )
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
+export PATH=/usr/local/smlnj/bin:"$PATH"
+
+tmux_jump() {
+    # starting in ~/code...
+    BASE="$HOME/code/github.com"
+    # ... look for directories exactly two levels deep (`~/code/owner/project`)
+    # and match them with fzf. In this case we break ties by favoring matches
+    # on the project name instead of the owner name (implementaion means
+    # favoring matches closer to the end of the string.) This is simplified a
+    # little bit with the `--select-1 --query="$1"` line: if there's only one
+    # match for the argument passed in as the first argument to this function,
+    # we select immediately instead of asking for an interactive selection.
+    SELECTED=$(find "$BASE" -mindepth 2 -maxdepth 2 -type d | sed "s|$BASE/||g" | fzf --tiebreak=end --select-1 --query="$1")
+
+    # fzf will exit with a non-zero code if you ctrl-c or ctrl-g out of
+    # it. We use this as a signal that we don't want to jump after all.
+    if [[ "$?" != 0 ]]; then echo "cancelling!"; return 1; fi
+
+    # call tmux-session on the *full* path to the matched project!
+    tmux-session "$BASE/$SELECTED"
+}
+
+# and alias this so I can just do `t bytes.zone` instead of having to type
+# tmux_jump every time.
+alias tj=tmux_jump
+alias ts=tmux-session
+
+{{end -}}
 
 ################################################################################
 # put in vi mode:
@@ -111,18 +183,6 @@ alias ipython="python -c 'import IPython; IPython.terminal.ipapp.launch_new_inst
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# tmux aliases
-alias t="tmux"
-alias ta="t a -t"
-alias tls="t ls"
-alias tn="t new -t"
-alias tid='tmux display-message -p "#S"'
-function tk () {
-  tmux kill-session -t $(tmux display-message -p '#S')
-  docker kill $(docker ps -q) > /dev/null 2>&1
-}
-
-alias muxstart='tmuxinator start'
 
 eval "$(fasd --init auto)"
 
@@ -132,65 +192,5 @@ eval "$(fasd --init auto)"
 
 alias gg="lazygit"
 
-alias zc="cd /Users/nathanbraun/code/github.com/nathanbraun"
-
-export APY_ANKI_PATH=/Users/nathanbraun/anki/anki-2.1.40
-export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/Applications/Racket v8.5/bin"
-
-fpath=($HOME/.local/zsh-functions $fpath)
-
-export PATH="/opt/homebrew/bin:$PATH"
-# function tn() (
-#     if [ -n "$1" ]
-#       then
-#          tmux switch -t $1
-#       else
-#          echo "no session name"
-#      fi
-#   )
-export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
-export PATH=/usr/local/smlnj/bin:"$PATH"
-
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
-
-load_nvm () {
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
-
-tmux_jump() {
-    # starting in ~/code...
-    BASE="$HOME/code/github.com"
-    # ... look for directories exactly two levels deep (`~/code/owner/project`)
-    # and match them with fzf. In this case we break ties by favoring matches
-    # on the project name instead of the owner name (implementaion means
-    # favoring matches closer to the end of the string.) This is simplified a
-    # little bit with the `--select-1 --query="$1"` line: if there's only one
-    # match for the argument passed in as the first argument to this function,
-    # we select immediately instead of asking for an interactive selection.
-    SELECTED=$(find "$BASE" -mindepth 2 -maxdepth 2 -type d | sed "s|$BASE/||g" | fzf --tiebreak=end --select-1 --query="$1")
-
-    # fzf will exit with a non-zero code if you ctrl-c or ctrl-g out of
-    # it. We use this as a signal that we don't want to jump after all.
-    if [[ "$?" != 0 ]]; then echo "cancelling!"; return 1; fi
-
-    # call tmux-session on the *full* path to the matched project!
-    tmux-session "$BASE/$SELECTED"
-}
-
-# and alias this so I can just do `t bytes.zone` instead of having to type
-# tmux_jump every time.
-alias tj=tmux_jump
-alias ts=tmux-session
 
 alias ssh='TERM=xterm-256color \ssh'
