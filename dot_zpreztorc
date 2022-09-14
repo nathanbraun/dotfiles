@@ -34,12 +34,8 @@ zstyle ':prezto:load' pmodule \
   'terminal' \
   'editor' \
   'history' \
-  'directory' \
-  'spectrum' \
   'utility' \
-  'completion' \
-  'history-substring-search' \
-  'prompt'
+  'completion'
 
 #
 # Autosuggestions
@@ -61,7 +57,7 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' key-bindings 'emacs'
+zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Auto convert .... to ../..
 # zstyle ':prezto:module:editor' dot-expansion 'yes'
