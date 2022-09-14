@@ -52,7 +52,7 @@ vim.g.python_host_prog = "/Users/nathanbraun/neovim-python2/bin/python"
 vim.g.zettel_default_mappings = 0
 -- vim.g.zettel_options = {{template = "~/vimwiki/templates/template.tpl", disable_front_matter = 1}}
 vim.wo.colorcolumn = "81"
-vim.cmd [[let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}]]
+vim.cmd [[let g:slime_default_config = {"socket_name": "default", "target_pane": ":.2"}]]
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
