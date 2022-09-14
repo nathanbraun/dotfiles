@@ -83,20 +83,20 @@ keymap("x", "<leader>s", "<Plug>SlimeRegionSend", {silent = true})
 keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
 
 -- links
-keymap("n", "<leader>lz", ":e ~/vimwiki/zettelkasten.wiki<CR>", opts)
-keymap("n", "<leader>lw", ":e ~/vimwiki/plan-220404-0803.wiki<CR>", opts)
-keymap("n", "<leader>ll", ":e ~/vimwiki/210331-1521.wiki<CR>", opts)
-keymap("n", "<leader>ltb", ":e ~/vimwiki/plan-210213-1520.wiki<CR>", opts)
-keymap("n", "<leader>ltm", ":e ~/vimwiki/plan-220512-1527.wiki<CR>", opts)
-keymap("n", "<leader>lp", ":e ~/vimwiki/plan-220511-1508.wiki<CR>", opts)
-keymap("n", "<leader>ls", ":e ~/vimwiki/210104-2103.wiki<CR>", opts)
-keymap("n", "<leader>lcd", ":e ~/vimwiki/201103-1510.wiki<CR>", opts)
+keymap("n", "<leader>lz", ":e ~/notes/zettelkasten.wiki<CR>", opts)
+keymap("n", "<leader>lw", ":e ~/notes/plan-220404-0803.wiki<CR>", opts)
+keymap("n", "<leader>ll", ":e ~/notes/210331-1521.wiki<CR>", opts)
+keymap("n", "<leader>ltb", ":e ~/notes/plan-210213-1520.wiki<CR>", opts)
+keymap("n", "<leader>ltm", ":e ~/notes/plan-220512-1527.wiki<CR>", opts)
+keymap("n", "<leader>lp", ":e ~/notes/plan-220511-1508.wiki<CR>", opts)
+keymap("n", "<leader>ls", ":e ~/notes/210104-2103.wiki<CR>", opts)
+keymap("n", "<leader>lcd", ":e ~/notes/201103-1510.wiki<CR>", opts)
 
 -- week notes
-keymap("n", "<leader>lw", ":e ~/vimwiki/lks9.wiki<CR>", opts)
+keymap("n", "<leader>lw", ":e ~/notes/lks9.wiki<CR>", opts)
 
 -- week checklist
-keymap("n", "<leader>lcw", ":e ~/vimwiki/w74x.wiki<CR>", opts)
+keymap("n", "<leader>lcw", ":e ~/notes/w74x.wiki<CR>", opts)
 
 -- books
-keymap("n", "<leader>lk", ":e ~/vimwiki/76oo.wiki<CR>", opts)
+keymap("n", "<leader>lk", ":e ~/notes/76oo.wiki<CR>", opts)
