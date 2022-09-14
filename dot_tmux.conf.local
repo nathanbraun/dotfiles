@@ -452,3 +452,6 @@ unbind n
 unbind p
 bind n next-window
 bind p next-window
+
+unbind L
+bind L switch-client -l
