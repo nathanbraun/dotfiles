@@ -455,3 +455,6 @@ bind p next-window
 
 unbind L
 bind L switch-client -l
+
+unbind o
+bind o resize-pane -Z

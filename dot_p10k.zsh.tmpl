@@ -45,8 +45,11 @@
 {{- else if eq .chezmoi.os "darwin"}}
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    os_icon                 # os identifier
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    public_ip             # public IP address
+    time
+    newline                 # \n
+    os_icon                 # os identifier
     dir                     # current directory
     prompt_char             # prompt symbol
   )
@@ -128,7 +131,6 @@
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
-    vcs                     # git status
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     anaconda                # conda environment (https://conda.io/)
@@ -172,6 +174,9 @@
     vim_shell               # vim shell indicator (:sh)
     midnight_commander      # midnight commander shell (https://midnight-commander.org/)
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    newline
+    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    vcs                     # git status
     # vpn_ip                # virtual private network indicator
     # disk_usage            # disk usage
     # swap                  # used swap
@@ -221,10 +226,17 @@
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX=
   typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=
+
   # Connect right prompt lines with these symbols.
+{{- if eq .chezmoi.os "linux" }}
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX='%240F─╮'
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX='%240F─┤'
   typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_SUFFIX='%240F─╯'
+{{- else if eq .chezmoi.os "darwin"}}
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=
+  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_SUFFIX=
+{{- end}}
 
   # The left end of left prompt.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
@@ -1640,7 +1652,7 @@
   #
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
-    p10k segment -f 208 -i '⭐' -t 'hello, %n'
+    p10k segment -f 208 -i '💻 ' -t '%n'
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
