@@ -500,9 +500,17 @@ ls.add_snippets("java", {
 })
 
 ls.add_snippets("vimwiki", {
+	s(";te", {
+		-- Simple static text.
+    t({'topics: [Economics](lik1)'}),
+	}),
+	s(";tp", {
+		-- Simple static text.
+    t({'topics: [Productivity](q1tt)'}),
+	}),
 	s(";tt", {
 		-- Simple static text.
-    t({'topic: [Technical](kun9)'}),
+    t({'topics: [Technical](kun9)'}),
 	}),
 	s(";day", {
     t("# "),
