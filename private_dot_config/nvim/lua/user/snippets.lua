@@ -19,6 +19,13 @@ local fmta = require("luasnip.extras.fmt").fmta
 local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.expand_conditions")
 
+local filename = function()
+  return f(function(_args, snip)
+    local name = vim.split(snip.snippet.env.TM_FILENAME, ".", true)
+    return name[1] or ""
+  end)
+end
+
 -- If you're reading this file for the first time, best skip to around line 190
 -- where the actual snippet-definitions start.
 
@@ -206,59 +213,6 @@ ls.add_snippets("all", {
 		-- Last Placeholder, exit Point of the snippet.
 		i(0),
 		t({ "", "}" }),
-	}),
-	s("weekly", {
-		-- Simple static text.
-    t({'# WEEK 2022-',
-    '## PLAN',
-    '## NOTE DUMP',
-    '## KEEP',
-    '## DAILY NOTES',
-    '## HABITS',
-    '## PROMPTS',
-    '## PROJECTS',
-    '## SOMEDAY/MAYBE',
-    '## PREV PLAN',
-    '## CALENDAR',
-  }),
-	}),
-	s("daily", {
-		-- Simple static text.
-    t({'# SCHEDULE',
-    '- 04:00',
-    '- 04:30',
-    '- 05:00',
-    '- 05:30',
-    '- 06:00',
-    '- 06:30',
-    '- 07:00',
-    '- 07:30',
-    '- 08:00',
-    '- 08:30',
-    '- 09:00',
-    '- 09:30',
-    '- 10:00',
-    '- 10:30',
-    '- 11:00',
-    '- 11:30',
-    '- 12:00',
-    '- 12:30',
-    '- 01:00',
-    '- 01:30',
-    '- 02:00',
-    '- 02:30',
-    '- 03:00',
-    '- 03:30',
-    '- 04:00',
-    '- 04:30',
-    '- 05:00',
-    '- 05:30',
-    '- evening',
-    '',
-    '# MISC NOTES',
-    '',
-    '# REVIEW',
-  }),
 	}),
 	s("class", {
 		-- Choice: Switch between two different Nodes, first parameter is its position, second a list of nodes.
@@ -543,6 +497,73 @@ ls.add_snippets("java", {
 	}),
 }, {
 	key = "java",
+})
+
+ls.add_snippets("vimwiki", {
+	s(";tt", {
+		-- Simple static text.
+    t({'topic: [Technical](kun9)'}),
+	}),
+	s(";day", {
+    t("# "),
+		-- d(1, date_input, {}, { user_args = { "%Y-%m-%d" } }),
+    filename(),
+    t({'', '## SCHEDULE',
+    '- 04:00',
+    '- 04:30',
+    '- 05:00',
+    '- 05:30',
+    '- 06:00',
+    '- 06:30',
+    '- 07:00',
+    '- 07:30',
+    '- 08:00',
+    '- 08:30',
+    '- 09:00',
+    '- 09:30',
+    '- 10:00',
+    '- 10:30',
+    '- 11:00',
+    '- 11:30',
+    '- 12:00',
+    '- 12:30',
+    '- 01:00',
+    '- 01:30',
+    '- 02:00',
+    '- 02:30',
+    '- 03:00',
+    '- 03:30',
+    '- 04:00',
+    '- 04:30',
+    '- 05:00',
+    '- 05:30',
+    '- evening',
+    '',
+    '## MISC NOTES',
+    '',
+    '## REVIEW',
+  }),
+	}),
+	s(";week", {
+		-- Simple static text.
+    t({'# WEEK 2022-'}),
+    i(1),
+    t({'',
+    '## PLAN',
+    '## NOTE DUMP',
+    '## KEEP',
+    '## DAILY NOTES',
+    '## HABITS',
+    '## PROMPTS',
+    '## PROJECTS',
+    '## SOMEDAY/MAYBE',
+    '## PREV PLAN',
+    '## CALENDAR',
+  }),
+	}),
+}, {
+  type = "autosnippets",
+	key = "vimwiki",
 })
 
 ls.add_snippets("tex", {
