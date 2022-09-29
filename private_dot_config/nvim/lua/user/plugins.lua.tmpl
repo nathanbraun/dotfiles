@@ -67,7 +67,28 @@ return packer.startup(function(use)
   use { "nathanbraun/vim-rainbow-lists", ft = "vimwiki" }
 
   -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use {"hrsh7th/nvim-cmp",
+    requires = {
+      { "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function ()
+          require("copilot_cmp").setup()
+        end
+      },
+      { "zbirenbaum/copilot.lua",
+      event = {"VimEnter"},
+      config = function()
+        vim.defer_fn(function()
+          require("copilot").setup({
+            ft_disable = { "markdown", "vimwiki"}
+          })
+        end, 100)
+      end,
+    }
+  }
+
+  }-- The completion plugin
+
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
@@ -89,22 +110,8 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
 
-  -- copilot
-  use {
-    "zbirenbaum/copilot-cmp",
-    module = "copilot_cmp",
-  }
-  use {
-    "zbirenbaum/copilot.lua",
-    event = {"VimEnter"},
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup({
-          ft_disable = { "markdown", "vimwiki"}
-        })
-      end, 100)
-    end,
-  }
+  use "whiteinge/diffconflicts"
+
 {{- end }}
 
   use "junegunn/fzf"

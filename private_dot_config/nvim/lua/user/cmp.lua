@@ -40,6 +40,7 @@ local kind_icons = {
   Constant = "",
   Struct = "",
   Event = "",
+  Copilot = "",
   Operator = "",
   TypeParameter = "",
 }
