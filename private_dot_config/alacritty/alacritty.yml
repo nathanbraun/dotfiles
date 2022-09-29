@@ -27,10 +27,9 @@ font:
   # bold:
     # family: Monego Nerd Font Fix
     # family: Monego Nerd Font Fix
-  # italic:
-    # family: Monego Nerd Font Fix
-    # family: Monego Nerd Font Fix
-    # style: Italic
+  italic:
+    family: Monego Nerd Font Fix
+    style: Italic
   size: 12
   offset:
       x: 0
