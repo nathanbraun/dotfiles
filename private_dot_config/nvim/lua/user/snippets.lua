@@ -381,6 +381,32 @@ ls.add_snippets("all", {
 	-- luasnip.config.setup() call to populate
 	-- TM_SELECTED_TEXT/SELECT_RAW/SELECT_DEDENT.
 	-- In this case: select a URL, hit Tab, then expand this snippet.
+	s("cloze_hint", {
+		t('{{c'),
+		i(1),
+    t('::'),
+		f(function(_, snip)
+			-- TM_SELECTED_TEXT is a table to account for multiline-selections.
+			-- In this case only the first line is inserted.
+			return snip.env.TM_SELECTED_TEXT[1] or {}
+		end, {}),
+    t('::'),
+    i(2),
+		t('}}'),
+		i(0),
+	}),
+	s("cloze", {
+		t('{{c'),
+		i(1),
+    t('::'),
+		f(function(_, snip)
+			-- TM_SELECTED_TEXT is a table to account for multiline-selections.
+			-- In this case only the first line is inserted.
+			return snip.env.TM_SELECTED_TEXT[1] or {}
+		end, {}),
+		t('}}'),
+		i(0),
+	}),
 	s("link_url", {
 		t('<a href="'),
 		f(function(_, snip)
@@ -504,6 +530,12 @@ ls.add_snippets("vimwiki", {
 		-- Simple static text.
     t({'topics: [Economics](lik1)'}),
 	}),
+  s("selected_text", f(function(args, snip)
+    local res, env = {}, snip.env
+    table.insert(res, "Selected Text (current line is " .. env.TM_LINE_NUMBER .. "):")
+    for _, ele in ipairs(env.LS_SELECT_RAW) do table.insert(res, ele) end
+    return res
+  end, {})),
 	s(";tp", {
 		-- Simple static text.
     t({'topics: [Productivity](q1tt)'}),
@@ -512,11 +544,62 @@ ls.add_snippets("vimwiki", {
 		-- Simple static text.
     t({'topics: [Technical](kun9)'}),
 	}),
-	s(";day", {
-    t("# "),
-		-- d(1, date_input, {}, { user_args = { "%Y-%m-%d" } }),
-    filename(),
-    t({'', '## SCHEDULE',
+	s(";ti", {
+		-- Simple static text.
+    t({'- '}),
+    f(function()
+      local time = os.date('%I:%M')
+      return time
+    end, {}),
+    t({'', '  - '}),
+    i(1),
+	}),
+	s(";ankiq", {
+    t({'example topic',
+    'Q: question1',
+    'continued lines (no blanks)',
+    'A: answer1',
+    'Q: question2',
+    'A: answer2',
+    'long answer (no blanks)',
+    'Q: ...',
+    'A: ...',
+  }),
+	}),
+	s(";ankic", {
+    t({'example topic',
+    'T: cloze text',
+    '{{c1::continued}} lines (no blanks)',
+    'E:',
+  }),
+	}),
+	s(";topic", {
+    t({'### WORK',
+    '### PRODUCTIVITY',
+    '### READING',
+    '### WRITING',
+    '### ZETTEL',
+    '### LEARNING',
+    '### HOBBIES',
+    '### FAMILY',
+    '### SOCIAL',
+    '### CALENDAR',
+    '### BLOCK',
+    '### MISC',
+  }),
+	}),
+	s(";dow", {
+    t({'- fri',
+    '- sat',
+    '- sun',
+    '- mon',
+    '- tue',
+    '- wed',
+    '- thu',
+  }),
+	}),
+	s(";actual", {
+    t({'', '### ACTUAL',
     '- 04:00',
     '- 04:30',
     '- 05:00',
@@ -546,10 +629,41 @@ ls.add_snippets("vimwiki", {
     '- 05:00',
     '- 05:30',
     '- evening',
-    '',
-    '## MISC NOTES',
+  }),
+	}),
+	s(";day", {
+    t("# "),
+		-- d(1, date_input, {}, { user_args = { "%Y-%m-%d" } }),
+    filename(),
+    t({'', '## PLAN',
+    '## BY HOUR',
+    '- 07:00',
+    '- 07:30',
+    '- 08:00',
+    '- 08:30',
+    '- 09:00',
+    '- 09:30',
+    '- 10:00',
+    '- 10:30',
+    '- 11:00',
+    '- 11:30',
+    '- 12:00',
+    '- 12:30',
+    '- 01:00',
+    '- 01:30',
+    '- 02:00',
+    '- 02:30',
+    '- 03:00',
+    '- 03:30',
+    '- 04:00',
+    '- 04:30',
+    '- 05:00',
+    '- 05:30',
+    '- evening',
     '',
     '## REVIEW',
+    '',
+    '## MISC NOTES',
   }),
 	}),
 	s(";week", {

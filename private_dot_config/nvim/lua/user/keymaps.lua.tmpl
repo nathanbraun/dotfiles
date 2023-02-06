@@ -44,8 +44,14 @@ keymap("n", "<leader>lz", ":e ~/notes/zettelkasten.wiki<CR>", opts)
 -- tech stuff
 keymap("n", "<leader>ldo", ":e ~/notes/210313-1347.wiki<CR>", opts)
 
--- writing 
+-- writing
 keymap("n", "<leader>lwr", ":e ~/notes/tzvs.wiki<CR>", opts)
+
+-- work
+keymap("n", "<leader>lwo", ":e ~/notes/z6f0.wiki<CR>", opts)
+
+-- productivity/self-improvement
+keymap("n", "<leader>lpr", ":e ~/notes/z6f0.wiki<CR>", opts)
 
 -- week notes
 keymap("n", "<leader>lwe", ":e ~/notes/lks9.wiki<CR>", opts)
@@ -72,16 +78,19 @@ keymap("n", "<leader>l1p", ":e ~/notes/ppqo.wiki<CR>", opts)
 keymap("n", "<leader>lbl", ":e ~/notes/17h3.wiki<CR>", opts)
 
 -- reading list
-keymap("n", "<leader>lar", ":e ~/notes/rkh2.wiki<CR>", opts)
+keymap("n", "<leader>lme", ":e ~/notes/rkh2.wiki<CR>", opts)
 
 -- projects
-keymap("n", "<leader>lpr", ":e ~/notes/bul8.wiki<CR>", opts)
+keymap("n", "<leader>lpj", ":e ~/notes/bul8.wiki<CR>", opts)
 
 -- someday
 keymap("n", "<leader>lso", ":e ~/notes/30x0.wiki<CR>", opts)
 
 -- learning
 keymap("n", "<leader>lle", ":e ~/notes/4syy.wiki<CR>", opts)
+
+-- notes
+keymap("n", "<leader>lno", ":e ~/notes/0g5a.wiki<CR>", opts)
 
 {{- end }}
 
@@ -90,7 +99,7 @@ keymap("n", "<leader>lle", ":e ~/notes/4syy.wiki<CR>", opts)
 
 -- find
 keymap("n", "<leader>lf", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>lb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>lbu", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>lr", ":Telescope oldfiles<CR>", opts)
 
 -- Better window navigation
@@ -132,3 +141,5 @@ keymap("x", "<leader>s", "<Plug>SlimeRegionSend", {silent = true})
 
 keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
 
+keymap("x", "ga", "<Plug>(EasyAlign)", {silent = true})
+keymap("n", "ga", "<Plug>(EasyAlign)", {silent = true})
