@@ -18,7 +18,7 @@ fi
 source ~/.zplug/init.zsh
 
 # Select zplug plugins
-zplug "clvv/fasd"
+zplug "agkozak/zsh-z"
 zplug "junegunn/fzf"
 zplug "yuhonas/zsh-aliases-lsd"
 zplug "romkatv/powerlevel10k", as:theme, depth:1
@@ -54,7 +54,7 @@ fi
 source ~/.zplug/init.zsh
 
 # Select zplug plugins
-zplug "clvv/fasd"
+zplug "agkozak/zsh-z"
 zplug "junegunn/fzf"
 zplug "yuhonas/zsh-aliases-lsd"
 zplug "romkatv/powerlevel10k", as:theme, depth:1
@@ -184,9 +184,6 @@ fi
 alias ipython="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-eval "$(fasd --init auto)"
 
 # aliases
 # alias pomo='noti pomodoro --simple'
