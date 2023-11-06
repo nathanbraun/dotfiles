@@ -143,3 +143,17 @@ keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
 
 keymap("x", "ga", "<Plug>(EasyAlign)", {silent = true})
 keymap("n", "ga", "<Plug>(EasyAlign)", {silent = true})
+
+keymap('x', '<leader>or', ":<C-U>'<,'>!sort -R<CR>", opts)
+
+keymap("n", "<leader>?", ":set spell!<CR>", opts)
+
+function _G.replace_quotes()
+    vim.cmd('silent! %s/“/"/g')
+    vim.cmd('silent! %s/”/"/g')
+    vim.cmd('silent! %s/’/\'/g')
+    vim.cmd('silent! %s/…/... /g')
+
+end
+
+vim.api.nvim_set_keymap('n', '<leader>r\'', ':lua _G.replace_quotes()<CR>', { noremap = true, silent = true })
