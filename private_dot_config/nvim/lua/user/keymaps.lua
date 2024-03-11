@@ -32,8 +32,6 @@ keymap("v", "J", "<cmd>HopLineAC<CR>", opts)
 keymap("v", "H", "<cmd>HopWordBC<CR>", opts)
 keymap("v", "L", "<cmd>HopWordAC<CR>", opts)
 
-{{- if eq .chezmoi.os "darwin" }}
-
 -- vimwiki
 keymap("n", "<leader>wk", ":VimwikiDiaryPrevDay<CR>", opts)
 keymap("n", "<leader>wj", ":VimwikiDiaryNextDay<CR>", opts)
@@ -92,8 +90,6 @@ keymap("n", "<leader>lle", ":e ~/notes/4syy.wiki<CR>", opts)
 -- notes
 keymap("n", "<leader>lno", ":e ~/notes/0g5a.wiki<CR>", opts)
 
-{{- end }}
-
 
 -- Normal --
 
@@ -147,6 +143,7 @@ keymap("n", "ga", "<Plug>(EasyAlign)", {silent = true})
 keymap('x', '<leader>or', ":<C-U>'<,'>!sort -R<CR>", opts)
 
 keymap("n", "<leader>?", ":set spell!<CR>", opts)
+keymap("n", "<leader>c", "<cmd>AIChat<CR>", opts)
 
 function _G.replace_quotes()
     vim.cmd('silent! %s/“/"/g')
@@ -156,4 +153,12 @@ function _G.replace_quotes()
 
 end
 
+keymap("n", "<c-l>", "<cmd>TmuxNavigateRight<cr>", opts)
+keymap("n", "<c-h>", "<cmd>TmuxNavigateLeft<cr>", opts)
+keymap("n", "<c-j>", "<cmd>TmuxNavigatedown<cr>", opts)
+keymap("n", "<c-k>", "<cmd>TmuxNavigateUp<cr>", opts)
+
 vim.api.nvim_set_keymap('n', '<leader>r\'', ':lua _G.replace_quotes()<CR>', { noremap = true, silent = true })
+
+keymap("n", "<leader>ai", "<cmd>AINewPersistentChat<cr>", opts)
+

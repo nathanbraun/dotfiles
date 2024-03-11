@@ -1,13 +1,12 @@
 require "user.options"
+require "user.lazy"
 require "user.keymaps"
-require "user.plugins"
+-- require "user.plugins"
 require "user.colorscheme"
-{{- if eq .chezmoi.os "darwin" }}
 require "user.zk"
 require "user.vimwiki"
-require "user.snippets"
-require "user.treesitter"
+-- require "user.snippets"
+-- require "user.treesitter"
 require "user.lsp"
 require "user.cmp"
-{{- end }}
 require "user.telescope"
