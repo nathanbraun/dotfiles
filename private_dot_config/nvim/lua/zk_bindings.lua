@@ -97,6 +97,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>zow", '<Cmd>ZkNotes { tags = {"week"}, sort = {"modified"} }<CR>', opts)
 
   -- open backlinks by type 
+  vim.keymap.set("n", "<leader>zbn", '<Cmd>ZkBacklinks { sort = {"modified"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zbc", '<Cmd>ZkBacklinks { tags = {"concept"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zbs", '<Cmd>ZkBacklinks { tags = {"source"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zbpe", '<Cmd>ZkBacklinks { tags = {"person"}, sort = {"title"} }<CR>', opts)
@@ -113,6 +114,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>zbw", '<Cmd>ZkBacklinks { tags = {"week"}, sort = {"title"} }<CR>', opts)
 
   -- open links by type 
+  vim.keymap.set("n", "<leader>zln", '<Cmd>ZkLinks { sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zlc", '<Cmd>ZkLinks { tags = {"concept"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zls", '<Cmd>ZkLinks { tags = {"source"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zlpe", '<Cmd>ZkLinks { tags = {"person"}, sort = {"title"} }<CR>', opts)
