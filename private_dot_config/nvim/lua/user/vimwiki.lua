@@ -20,3 +20,13 @@ highlight RBListsB7 guifg=#70b950
 
 local group = vim.api.nvim_create_augroup("mygroup", {clear = true})
 vim.api.nvim_create_autocmd("BufEnter", {group = group, pattern="*.wiki", callback = function() vim.cmd("call rblist#enable()") end, })
+
+vim.api.nvim_create_augroup("CustomFileType", { clear = true })
+vim.api.nvim_create_autocmd({"BufEnter"}, {
+  pattern = "*-ai.wiki",
+  group = "CustomFileType",
+  callback = function()
+    -- Set the filetype to aichat
+    vim.bo.filetype = "aichat"
+  end,
+})
