@@ -220,3 +220,10 @@ setopt INC_APPEND_HISTORY
 
 export NOTES_DIR="$HOME/notes"
 export ZK_NOTEBOOK_DIR="$NOTES_DIR/.zk"
+
+# bun completions
+[ -s "/Users/nathanbraun/.bun/_bun" ] && source "/Users/nathanbraun/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
