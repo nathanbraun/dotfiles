@@ -1,0 +1,63 @@
+# Comments are possible
+snippet fun
+	function ${1:name}(${2:params})
+		${0:$VISUAL}
+	end
+snippet upcase
+	local ${1:var} = '${1/.*/\U\0/g}'
+snippet choices
+	print('My favorite language is: ${1|JavaScript,Lua,Rust|}')
+snippet date
+	Current date is `strftime('%c')`
+# Custom tabstop order
+snippet repeat
+	repeat
+		${2:what}
+	while ${1:condition}
+snippet ;ti "for intersitual journaling" A
+	- `strftime('%I:%M')`
+		- ${1}
+snippet dow "day of the week"
+	- mon
+	- tue
+	- wed
+	- thu
+	- fri
+	- sat
+	- sun
+snippet ;day "day template" A
+	# `strftime("%Y-%m-%d")`
+	## PLAN
+	## BY HOUR
+	- 04:00
+	- 05:00
+	- 06:00
+	- 07:00
+	- 08:00
+	- 08:30
+	- 09:00
+	- 09:30
+	- 10:00
+	- 10:30
+	- 11:00
+	- 11:30
+	- 12:00
+	- 12:30
+	- 01:00
+	- 01:30
+	- 02:00
+	- 02:30
+	- 03:00
+	- 03:30
+	- 04:00
+	- 04:30
+	- 05:00
+	- 05:30
+
+	## NOTES
+
+snippet ;week "week template" A
+	# `strftime("%Y-%U")`
+	## PLAN
+	## REVIEW
+	## NOTES
