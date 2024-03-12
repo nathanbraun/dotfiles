@@ -40,7 +40,7 @@ return {{
     },
   },
 
-  -- cmp plugins
+  -- cmp plugins 
   "hrsh7th/nvim-cmp",  -- The completion plugin
 
    "hrsh7th/cmp-buffer",  -- buffer completions

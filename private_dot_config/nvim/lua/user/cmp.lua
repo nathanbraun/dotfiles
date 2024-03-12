@@ -3,12 +3,12 @@ if not cmp_status_ok then
   return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
+local snip_status_ok, snippy = pcall(require, "snippy")
 if not snip_status_ok then
   return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+-- require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -74,8 +74,8 @@ cmp.setup {
     ["<Tab>"] = vim.schedule_wrap(function(fallback)
       if cmp.visible() and has_words_before() then
         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-      elseif luasnip.jumpable(1) then
-        luasnip.jump(1)
+      elseif snippy.can_expand_or_advance() then
+        snippy.expand_or_advance()
       else
         fallback()
       end
@@ -83,8 +83,8 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif snippy.can_jump(-1) then
+        snippy.previous()
       else
         fallback()
       end
@@ -102,8 +102,9 @@ cmp.setup {
       vim_item.menu = ({
         -- copilot = "[Copilot]",
         nvim_lsp = "[LSP]",
+        snippy = "[Snippet]",
+        calc = "[Calc]",
         nvim_lua = "[NVIM_LUA]",
-        luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
       })[entry.source.name]
@@ -114,7 +115,8 @@ cmp.setup {
     -- { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "luasnip" },
+    { name = "calc" },
+    { name = "snippy" },
     { name = "buffer" },
     { name = "path" },
   },
