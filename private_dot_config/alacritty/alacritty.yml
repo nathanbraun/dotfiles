@@ -23,10 +23,6 @@ font:
   # Normal (roman) font face
   normal:
     family: Monego Nerd Font Fix
-    # family: MesloLGS NF
-  # bold:
-    # family: Monego Nerd Font Fix
-    # family: Monego Nerd Font Fix
   italic:
     family: Monego Nerd Font Fix
     style: Italic
@@ -37,7 +33,6 @@ font:
   glyph_offset:
     x: 0
     y: 0
-  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -46,49 +41,9 @@ draw_bold_text_with_bright_colors: true
 colors:
   primary:
     hard contrast: background = '0x1d2021'
-    # background: "0x282828"
-    # background: "0x0A0E14"
     background: "0x151515"
     soft contrast: background = '0x32302f'
-    # foreground: "0xebdbb2"
-    # foreground: "0xB3B1AD"
     foreground: "#e4e4e4"
-
-  # # Cursor volors
-  # cursor:
-  #   text: '#feffff'
-  #   cursor: '#ffb472'
-
-  # # Normal colors
-  # normal:
-  #   black:   '#a3a3a3'
-  #   red:     '#e98885'
-  #   # green:   '#a3c38b'
-  #   # green:   '#799d6a'
-  #   green:   '#799d6a'
-  #   # yellow:  '#ffc68d'
-  #   yellow:  '#fad07a'
-  #   # blue:    '#a6cae2'
-  #   blue:    '#8197bf'
-  #   magenta: '#e7cdfb'
-  #   cyan:    '#00a69f'
-  #   white:   '#e4e4e4'
-
-  # # Bright colors
-  # bright:
-  #   black:   '#c8c8c8'
-  #   red:     '#ffb2b0'
-  #   green:   '#c8e2b9'
-  #   yellow:  '#fad07a'
-  #   blue:    '#bddff7'
-  #   magenta: '#fce2ff'
-  #   cyan:    '#0bbdb6'
-  #   white:   '#feffff'
-
-  # # Selection colors
-  # selection:
-  #   text: '#5963a2'
-  #   background: '#f6f6f6'
 
   # Normal colors
   normal:
