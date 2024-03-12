@@ -210,7 +210,11 @@ alias ipython="python -c 'import IPython; IPython.terminal.ipapp.launch_new_inst
 # alias dash='noti pomodoro --simple 5'
 
 alias gg="lazygit"
-alias chd=cd "$(chezmoi source-path)"
+
+chd() {
+  cd "$(chezmoi source-path)"
+}
+alias chd=chd
 alias cha="chezmoi apply"
 
 
