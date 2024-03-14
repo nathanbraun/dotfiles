@@ -39,6 +39,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>znr", '<Cmd>ZkNew { template = "reference.md"}<CR>', opts)
   vim.keymap.set("n", "<leader>znq", '<Cmd>ZkNew { template = "quote.md"}<CR>', opts)
   vim.keymap.set("n", "<leader>znb", '<Cmd>ZkNew { template = "book.md"}<CR>', opts)
+  vim.keymap.set("n", "<leader>zni", '<Cmd>ZkNew { template = "insight.md"}<CR>', opts)
 
   commands.add("ZkYankName", function(options) helpers.yankName(options, { title = "Zk Yank" }) end)
 
@@ -62,6 +63,7 @@ function M.setup()
   vim.keymap.set("v", "[[b", ":'<,'>ZkInsertLinkAtSelection { tags = {'book'}}<CR>", opts)
   vim.keymap.set("v", "[[d", ":'<,'>ZkInsertLinkAtSelection { tags = {'day'}, sort = {'modified'}}<CR>", opts)
   vim.keymap.set("v", "[[w", ":'<,'>ZkInsertLinkAtSelection { tags = {'week'}, sort = {'modified'}}<CR>", opts)
+  vim.keymap.set("v", "[[i", ":'<,'>ZkInsertLinkAtSelection { tags = {'insight'}, sort = {'modified'}}<CR>", opts)
 
   -- insert link by type in insert mode
   vim.keymap.set("i", "[[n", "<Cmd>ZkYankName<CR>", opts)
@@ -79,6 +81,7 @@ function M.setup()
   vim.keymap.set("i", "[[b", '<Cmd>ZkYankName { tags = {"book"}}<CR>', opts)
   vim.keymap.set("i", "[[d", '<Cmd>ZkYankName { tags = {"day"}, sort = {"modified"}}<CR>', opts)
   vim.keymap.set("i", "[[w", '<Cmd>ZkYankName { tags = {"week"}, sort = {"modified"}}<CR>', opts)
+  vim.keymap.set("i", "[[i", '<Cmd>ZkYankName { tags = {"insight"}, sort = {"modified"}}<CR>', opts)
 
   -- open note by type 
   vim.keymap.set("n", "<leader>zoc", '<Cmd>ZkNotes { tags = {"concept"}, sort = {"modified"} }<CR>', opts)
@@ -95,6 +98,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>zob", '<Cmd>ZkNotes { tags = {"book"}, sort = {"modified"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zod", '<Cmd>ZkNotes { tags = {"day"}, sort = {"modified"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zow", '<Cmd>ZkNotes { tags = {"week"}, sort = {"modified"} }<CR>', opts)
+  vim.keymap.set("n", "<leader>zoi", '<Cmd>ZkNotes { tags = {"insight"}, sort = {"modified"} }<CR>', opts)
 
   -- open backlinks by type 
   vim.keymap.set("n", "<leader>zbn", '<Cmd>ZkBacklinks { sort = {"modified"} }<CR>', opts)
@@ -112,6 +116,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>zbb", '<Cmd>ZkBacklinks { tags = {"book"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zbd", '<Cmd>ZkBacklinks { tags = {"day"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zbw", '<Cmd>ZkBacklinks { tags = {"week"}, sort = {"title"} }<CR>', opts)
+  vim.keymap.set("n", "<leader>zbi", '<Cmd>ZkBacklinks { tags = {"insight"}, sort = {"title"} }<CR>', opts)
 
   -- open links by type 
   vim.keymap.set("n", "<leader>zln", '<Cmd>ZkLinks { sort = {"title"} }<CR>', opts)
@@ -129,6 +134,7 @@ function M.setup()
   vim.keymap.set("n", "<leader>zlb", '<Cmd>ZkLinks { tags = {"book"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zld", '<Cmd>ZkLinks { tags = {"day"}, sort = {"title"} }<CR>', opts)
   vim.keymap.set("n", "<leader>zlw", '<Cmd>ZkLinks { tags = {"week"}, sort = {"title"} }<CR>', opts)
+  vim.keymap.set("n", "<leader>zli", '<Cmd>ZkLinks { tags = {"insight"}, sort = {"title"} }<CR>', opts)
 
   vim.api.nvim_create_user_command('CreateLink', helpers.CreateMarkdownLinkFromWiki, {})
 
