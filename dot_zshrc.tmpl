@@ -211,12 +211,8 @@ alias ipython="python -c 'import IPython; IPython.terminal.ipapp.launch_new_inst
 
 alias gg="lazygit"
 
-chd() {
-  cd "$(chezmoi source-path)"
-}
-alias chd=chd
+alias chd='cd "$(chezmoi source-path)"'
 alias cha="chezmoi apply"
-
 
 alias ssh='TERM=xterm-256color \ssh'
 
