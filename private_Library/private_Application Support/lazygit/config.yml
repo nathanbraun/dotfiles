@@ -1,13 +1,37 @@
 customCommands:
-  - key: "<c-y>" 
-    description: "pick AI commit"
+  - key: "<c-r>" 
+    description: "AI code commit"
     command: 'git commit -m "{{.Form.Msg}}"'
     context: "files"
     prompts:
       - type: "menuFromCommand"
         title: "ai Commits"
         key: "Msg"
-        command: 'bunx bunnai'
+        command: 'bunx bunnai --template="code"'
+        filter: '^(?P<number>\d+)\.\s(?P<message>.+)$'
+        valueFormat: "{{ .message }}"
+        labelFormat: "{{ .number }}: {{ .message | green }}"
+  - key: "<c-w>" 
+    description: "AI note commit"
+    command: 'git commit -m "{{.Form.Msg}}"'
+    context: "files"
+    prompts:
+      - type: "menuFromCommand"
+        title: "ai Commits"
+        key: "Msg"
+        command: 'bunx bunnai --template="note"'
+        filter: '^(?P<number>\d+)\.\s(?P<message>.+)$'
+        valueFormat: "{{ .message }}"
+        labelFormat: "{{ .number }}: {{ .message | green }}"
+  - key: "<c-e>" 
+    description: "AI book commit"
+    command: 'git commit -m "{{.Form.Msg}}"'
+    context: "files"
+    prompts:
+      - type: "menuFromCommand"
+        title: "ai Commits"
+        key: "Msg"
+        command: 'bunx bunnai --template="book"'
         filter: '^(?P<number>\d+)\.\s(?P<message>.+)$'
         valueFormat: "{{ .message }}"
         labelFormat: "{{ .number }}: {{ .message | green }}"
