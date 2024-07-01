@@ -55,7 +55,24 @@ return {{
   "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
   -- programming
-  -- use "github/copilot.vim"
+  -- "github/copilot.vim",
+  {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+          require("copilot").setup({
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+    })
+      end,
+  },
+  {
+      "zbirenbaum/copilot-cmp",
+      config = function()
+          require("copilot_cmp").setup()
+      end,
+  },
   "jpalardy/vim-slime",
 
   -- use "wakatime/vim-wakatime"
@@ -72,7 +89,6 @@ return {{
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   -- use "lunarvim/darkplus.nvim"
   "flazz/vim-colorschemes",
-
   {
     "kdheepak/lazygit.nvim",
     -- optional for floating window border decoration
