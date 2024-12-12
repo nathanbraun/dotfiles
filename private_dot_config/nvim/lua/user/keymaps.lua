@@ -55,10 +55,14 @@ keymap("n", "<leader>lpr", ":e ~/notes/q1tt.wiki<CR>", opts)
 keymap("n", "<leader>lwe", ":e ~/notes/lks9.wiki<CR>", opts)
 
 -- week checklist
-keymap("n", "<leader>lwc", ":e ~/notes/w74x.wiki<CR>", opts)
+keymap("n", "<leader>lwl", ":e ~/notes/w74x.wiki<CR>", opts)
+keymap("n", "<leader>lwr", ":e ~/notes/oaij-ai.wiki<CR>", opts)
+keymap("n", "<leader>lwp", ":e ~/notes/nc8l-ai.wiki<CR>", opts)
 
 -- day checklist
-keymap("n", "<leader>ldc", ":e ~/notes/7i9q.wiki<CR>", opts)
+keymap("n", "<leader>ldl", ":e ~/notes/7i9q.wiki<CR>", opts)
+keymap("n", "<leader>ldr", ":e ~/notes/yb1u-ai.wiki<CR>", opts)
+keymap("n", "<leader>ldp", ":e ~/notes/ortm-ai.wiki<CR>", opts)
 
 -- books
 keymap("n", "<leader>lbo", ":e ~/notes/76oo.wiki<CR>", opts)
@@ -160,5 +164,90 @@ keymap("n", "<c-k>", "<cmd>TmuxNavigateUp<cr>", opts)
 
 vim.api.nvim_set_keymap('n', '<leader>r\'', ':lua _G.replace_quotes()<CR>', { noremap = true, silent = true })
 
+
 keymap("n", "<leader>ai", "<cmd>AINewPersistentChat<cr>", opts)
 
+-- local custom_config = {
+--   model = 'anthropic/claude-3-opus',
+-- }
+--
+-- keymap("n", "<leader>an", function()
+--   vim.call("AINewPersistentChatCustom", custom_config)
+-- end, opts)
+
+
+-- Function to clean up [ins]
+function CleanIns()
+   -- Get the clipboard content
+   local content = vim.fn.getreg("*")
+
+   -- Remove [ins] from the content
+   content = content:gsub("%[ins%]", "")
+   content = content:gsub("%[nav%]", "")
+
+   -- Put the cleaned content back to the clipboard
+   vim.fn.setreg("*", content)
+
+   -- Optionally, you could paste it directly into the buffer
+   vim.api.nvim_put(vim.split(content, "\n"), "l", true, true)
+end
+
+function clean_and_paste_visual()
+  -- Fetch the content from the "*" register
+  local text = vim.fn.getreg('*')
+  
+  -- Clean the text by removing '[ins] ' and potentially trailing newline
+  text = string.gsub(text, '%[ins%] ', '')
+  text = string.gsub(text, '\n$', '')
+
+  -- Get the position of the selected visual text
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+
+  local start_row = start_pos[2] - 1
+  local start_col = start_pos[3] - 1
+  local end_row = end_pos[2] - 1
+  local end_col = end_pos[3]
+
+  -- Get the content of the buffer to confirm the maximum column in the end row
+  local line = vim.api.nvim_buf_get_lines(0, end_row, end_row + 1, false)[1]
+  if end_col > #line then
+    end_col = #line
+  elseif start_row ~= end_row then
+    -- Workaround for visual block selection across multiple lines
+    end_col = #vim.api.nvim_buf_get_lines(0, end_pos[2] - 1, end_pos[2], false)[1]
+  end
+
+  -- Replace the selected visual text with cleaned text
+  vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, vim.split(text, '\n'))
+
+  -- Exit out of visual mode
+  vim.api.nvim_command('normal! gv')
+
+  -- Clear the visual selection by re-entering normal mode
+  vim.api.nvim_command('normal! <esc>')
+end
+
+vim.api.nvim_create_user_command('CleanAndPaste', function() clean_and_paste_visual() end, {})
+
+-- Create a keymap to call this function
+keymap('n', '<leader>p', ':lua CleanIns()<CR>', opts)
+keymap('v', '<leader>p', ':<C-u>CleanAndPaste<CR>', opts)
+
+-- set models
+local function set_and_echo_model(model)
+    vim.cmd(string.format(":let g:vim_ai_chat['options']['model'] = '%s'", model))
+    vim.cmd("echo 'now using " .. model .. "'")
+end
+
+-- Create a user command
+vim.api.nvim_create_user_command('SetAIModel', function(opts)
+    set_and_echo_model(opts.args)
+end, { nargs = 1 })
+
+-- Example keybindings
+vim.keymap.set('n', '<leader>mo', ':SetAIModel anthropic/claude-3-opus<CR>', { desc = 'Set AI model to Claude' })
+vim.keymap.set('n', '<leader>ms', ':SetAIModel anthropic/claude-3-sonnet<CR>', { desc = 'Set AI model to Claude' })
+vim.keymap.set('n', '<leader>mg', ':SetAIModel openai/gpt-4o<CR>', { desc = 'Set AI model to GPT 4o' })
+vim.keymap.set('n', '<leader>m1', ':SetAIModel openai/o1-preview<CR>', { desc = 'Set AI model to o1-preview' })
+vim.keymap.set('n', '<leader>mm', ':SetAIModel openai/o1-mini<CR>', { desc = 'Set AI model to o1-mini' })

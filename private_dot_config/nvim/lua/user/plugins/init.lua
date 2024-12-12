@@ -1,4 +1,18 @@
-return {{
+return { {
+
+  -- mini vim
+  {
+    'echasnovski/mini.nvim',
+    config = function()
+      require('mini.ai').setup()
+      require('mini.files').setup()
+      require('mini.icons').setup()
+      require('mini.surround').setup()
+      require('mini.notify').setup()
+      require('mini.comment').setup()
+    end,
+    version = false
+  },
 
   -- My plugins here
   "nvim-lua/popup.nvim",
@@ -17,7 +31,7 @@ return {{
   "JoosepAlviste/nvim-ts-context-commentstring",
 
   -- vimwiki
-  {"vimwiki/vimwiki", branch = "dev"},
+  { "vimwiki/vimwiki",               branch = "dev" },
 
   -- zk
   "zk-org/zk-nvim",
@@ -25,7 +39,7 @@ return {{
   { "nathanbraun/vim-rainbow-lists", ft = "vimwiki" },
 
   -- chat gpt
-  { "nathanbraun/vim-ai" },
+  { "nathanbraun/vim-ai" , branch = "main"},
 
   -- math
   'jbyuki/nabla.nvim',
@@ -37,42 +51,64 @@ return {{
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
 
-  -- cmp plugins 
-  "hrsh7th/nvim-cmp",  -- The completion plugin
+  -- cmp plugins
+  "hrsh7th/nvim-cmp",    -- The completion plugin
 
-   "hrsh7th/cmp-buffer",  -- buffer completions
-   "hrsh7th/cmp-path",  -- path completions
-   "hrsh7th/cmp-cmdline", -- cmdline completions
+  "hrsh7th/cmp-buffer",  -- buffer completions
+  "hrsh7th/cmp-path",    -- path completions
+  "hrsh7th/cmp-cmdline", -- cmdline completions
   -- use "saadparwaiz1/cmp_luasnip" -- snippet completions
-   "dcampos/cmp-snippy",  -- snippet completions
-   "hrsh7th/cmp-nvim-lsp", 
-   "hrsh7th/cmp-nvim-lua",
-   "hrsh7th/cmp-calc",
+  "dcampos/cmp-snippy",  -- snippet completions
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-nvim-lua",
+  "hrsh7th/cmp-calc",
 
   -- snippets
   -- use "L3MON4D3/LuaSnip" --snippet engine
-  "dcampos/nvim-snippy",
-  "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+  {
+    "dcampos/nvim-snippy",
+    config = function()
+      require("snippy").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+        enable_auto = true
+      })
+    end
+  }, -- a bunch of snippets to use
 
   -- programming
   -- "github/copilot.vim",
   {
-      "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      event = "InsertEnter",
-      config = function()
-          require("copilot").setup({
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-    })
-      end,
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
   },
   {
-      "zbirenbaum/copilot-cmp",
-      config = function()
-          require("copilot_cmp").setup()
-      end,
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
   },
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({
+        ignore_filetypes = {
+          markdown = true,
+          vimwiki = true,
+          aichat = true,
+        }
+      })
+    end,
+  },
+
   "jpalardy/vim-slime",
 
   -- use "wakatime/vim-wakatime"
@@ -93,11 +129,11 @@ return {{
     "kdheepak/lazygit.nvim",
     -- optional for floating window border decoration
     dependencies = {
-        "nvim-lua/plenary.nvim",
+      "nvim-lua/plenary.nvim",
     },
   },
-  "tpope/vim-surround",
-  "tpope/vim-commentary",
+  -- "tpope/vim-surround",
+  -- "tpope/vim-commentary",
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -113,20 +149,26 @@ return {{
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
   "tpope/vim-unimpaired",
   "kana/vim-arpeggio",
-  "ap/vim-buftabline",
-  "mattn/calendar-vim",
-  { "rlane/pounce.nvim",
+  -- "ap/vim-buftabline",
+  {"akinsho/bufferline.nvim",
     config = function()
-      require'pounce'.setup { accept_keys = "JKNPHLIUOMSDAFGVRBYTCEXWQZ" }
+      require('bufferline').setup {}
+    end
+  },
+  "mattn/calendar-vim",
+  {
+    "rlane/pounce.nvim",
+    config = function()
+      require 'pounce'.setup { accept_keys = "JKNPHLIUOMSDAFGVRBYTCEXWQZ" }
     end
   },
   {
@@ -135,10 +177,9 @@ return {{
     -- branch = 'v1', -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   },
   "airblade/vim-rooter"
   -- "notjedi/nvim-rooter.lua",
-}}
-
+} }

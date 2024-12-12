@@ -64,10 +64,15 @@ vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 vim.cmd('source ~/.config/nvim/vim/vim-ai-persistent.vim')
 vim.g.aichat_yaml_header = "---\ntitle: Untitled\ndate: %date%\ntags: [aichat]\n---"
+vim.g.vim_ai_roles_config_file = vim.fn.expand("~/.config/nvim/vim-ai-roles.ini")
 
 vim.g.vim_ai_chat = {
   options = {
-    model = "gpt-4o",
+    vim_ai_token_file_path = vim.fn.expand("~/.config/open-router.token"),
+    endpoint_url = "https://openrouter.ai/api/v1/chat/completions",
+    -- model = "anthropic/claude-3-opus",
+    model = "openai/o1-mini",
+    -- model = "gpt-4o",
     initial_prompt = [[
 >>> system
 

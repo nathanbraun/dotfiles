@@ -19,6 +19,7 @@ end
 local kind_icons = {
   Text = "",
   Method = "m",
+  Supermaven = "",
   Function = "",
   Constructor = "",
   Field = "",
@@ -112,6 +113,7 @@ cmp.setup {
     end,
   },
   sources = {
+    { name = "supermaven" },
     { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },

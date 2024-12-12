@@ -462,8 +462,8 @@ bind o resize-pane -Z
 unbind s
 bind-key s run-shell -b "~/.tmux/tmux-switch-session.sh"
 
-unbind C-x
-bind-key C-x run-shell -b "~/.tmux/tmux-kill-and-switch.sh"
+unbind k
+bind-key k run-shell -b "~/.tmux/tmux-kill-and-switch.sh"
 
 unbind j
 bind-key j run-shell -b "~/.tmux/tmux-jump.sh"
@@ -471,3 +471,6 @@ bind-key j run-shell -b "~/.tmux/tmux-jump.sh"
 # Check the number of panes in the current window, and split the panes only if there is a single pane
 unbind Enter
 bind-key Enter run-shell 'if [ $(tmux list-panes | wc -l) -eq 1 ]; then tmux split-window -h -p 25 \; split-window -v -p 20 \; select-pane -L; fi'
+
+unbind ,
+bind-key , run-shell 'if [ $(tmux list-panes | wc -l) -eq 1 ]; then tmux split-window -h -p 45 \; split-window -h -p 50 \; select-pane -L; tmux split-window -v -p 20 \; select-pane -L; fi'
