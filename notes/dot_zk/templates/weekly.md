@@ -6,7 +6,9 @@ tags: [week]
 ---
 
 # WEEK {{title}}
-## PLAN
+## 1. PLAN
+### PRIORITIES
+### BY DAY
 - mon
 - tue
 - wed
@@ -15,4 +17,23 @@ tags: [week]
 - sat
 - sun
 
-## REVIEW
+### DEEP WORK DAYS
+### POMODOROS THIS WEEK
+### 1-2 POMO TASKS
+### NEW BLOCK
+### MISC
+
+## 2. PRESENT/NOTES
+### PROJECTS
+
+## 3. REVIEW
+### DUMP
+### POMODOROS WORKED
+### METRICS
+### PROMPTS
+### BLOCK COMPLETED
+### DAILY
+### PROJECTS
+### BOOKS
+### KEEP
+### LAST REVIEW
