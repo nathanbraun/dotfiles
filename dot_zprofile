@@ -63,4 +63,4 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
 fi
 
 # Added by `rbenv init` on Mon Sep 30 10:54:47 CDT 2024
-eval "$(rbenv init - --no-rehash zsh)"
+# eval "$(rbenv init - --no-rehash zsh)"

@@ -22,6 +22,29 @@ return { {
 
   "hiphish/rainbow-delimiters.nvim",
   "gpanders/nvim-parinfer",
+  {
+    dir = "/Users/nathanbraun/code/github.com/nathanbraun/nvim-ai", -- Adjust this to your local path
+    dev = true,
+    config = function()
+      require("nai").setup({
+        openai = {
+          model = "gpt-4o",
+          temperature = 0.7,
+        },
+      })
+    end,
+  },
+  {
+    dir = "/Users/nathanbraun/code/github.com/nathanbraun/nvim-dumpling", -- Adjust this to your local path
+    dev = true,
+    config = function()
+      require("dumpling").setup({
+        format = "markdown", -- Output format: markdown, html, or screenshot
+        cleaned = true,      -- Whether to clean the output
+        render_js = true,    -- Whether to render JavaScript
+      })
+    end,
+  },
 
   -- Treesitter
   {
@@ -37,9 +60,6 @@ return { {
   "zk-org/zk-nvim",
 
   { "nathanbraun/vim-rainbow-lists", ft = "vimwiki" },
-
-  -- chat gpt
-  { "nathanbraun/vim-ai" , branch = "main"},
 
   -- math
   'jbyuki/nabla.nvim',
@@ -103,7 +123,6 @@ return { {
         ignore_filetypes = {
           markdown = true,
           vimwiki = true,
-          aichat = true,
         }
       })
     end,
@@ -159,7 +178,8 @@ return { {
   "tpope/vim-unimpaired",
   "kana/vim-arpeggio",
   -- "ap/vim-buftabline",
-  {"akinsho/bufferline.nvim",
+  {
+    "akinsho/bufferline.nvim",
     config = function()
       require('bufferline').setup {}
     end

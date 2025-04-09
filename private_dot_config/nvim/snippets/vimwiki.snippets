@@ -19,6 +19,12 @@ snippet ;ti "for intersitual journaling" A
 		- ${1}
 snippet ;> "right arrow" A
 	→
+snippet ;< "left arrow" A
+	←
+snippet ;up "up arrow" A
+	↑
+snippet ;down "down arrow" A
+	↓
 snippet ;-> "bullet right arrow" A
 	- →
 		- ${1}
@@ -91,3 +97,15 @@ snippet ;week "week template" A
 	## PLAN
 	## REVIEW
 	## NOTES
+
+snippet ;c "cloze template" A
+	{{c${1|1,2,3,4,5,6,7,8,9,10|}:$VISUAL}}
+
+snippet ;anki "anki note template" A
+	# Note
+	model: Cloze
+	tags: ${1}
+	deck: ${2}
+
+	## Text
+	${0}

@@ -110,9 +110,9 @@ local function getYearWeek(today)
     if today_time >= first_monday then
         -- Calculate the week number since the first Monday of the year
         week_num = math.floor(((today_time - first_monday) / 86400) / 7) + 1
-        if today_weekday == 2 then -- If today is Monday, ensure it's counted as the start of the new week
-            week_num = week_num + 1
-        end
+        -- if today_weekday == 2 then -- If today is Monday, ensure it's counted as the start of the new week
+        --     week_num = week_num + 1
+        -- end
     else
         -- If the date is before the first Monday, the week number is 0
         week_num = 0

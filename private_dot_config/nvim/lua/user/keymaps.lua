@@ -56,13 +56,13 @@ keymap("n", "<leader>lwe", ":e ~/notes/lks9.wiki<CR>", opts)
 
 -- week checklist
 keymap("n", "<leader>lwl", ":e ~/notes/w74x.wiki<CR>", opts)
-keymap("n", "<leader>lwr", ":e ~/notes/oaij-ai.wiki<CR>", opts)
-keymap("n", "<leader>lwp", ":e ~/notes/nc8l-ai.wiki<CR>", opts)
+keymap("n", "<leader>lwr", ":e ~/notes/oaij.wiki<CR>", opts)
+keymap("n", "<leader>lwp", ":e ~/notes/nc8l.wiki<CR>", opts)
 
 -- day checklist
 keymap("n", "<leader>ldl", ":e ~/notes/7i9q.wiki<CR>", opts)
-keymap("n", "<leader>ldr", ":e ~/notes/yb1u-ai.wiki<CR>", opts)
-keymap("n", "<leader>ldp", ":e ~/notes/ortm-ai.wiki<CR>", opts)
+keymap("n", "<leader>ldr", ":e ~/notes/yb1u.wiki<CR>", opts)
+keymap("n", "<leader>ldp", ":e ~/notes/ortm.wiki<CR>", opts)
 
 -- books
 keymap("n", "<leader>lbo", ":e ~/notes/76oo.wiki<CR>", opts)
@@ -139,6 +139,8 @@ keymap("n", "<leader>s", "<Plug>SlimeMotionSend", {silent = true})
 keymap("n", "<leader>ss", "<Plug>SlimeLineSend", {silent = true})
 keymap("x", "<leader>s", "<Plug>SlimeRegionSend", {silent = true})
 
+keymap("x", "<leader>r", "<Plug>(snippy-cut-text)", {silent = true})
+
 keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
 
 keymap("x", "ga", "<Plug>(EasyAlign)", {silent = true})
@@ -147,7 +149,6 @@ keymap("n", "ga", "<Plug>(EasyAlign)", {silent = true})
 keymap('x', '<leader>or', ":<C-U>'<,'>!sort -R<CR>", opts)
 
 keymap("n", "<leader>?", ":set spell!<CR>", opts)
-keymap("n", "<leader>c", "<cmd>AIChat<CR>", opts)
 
 function _G.replace_quotes()
     vim.cmd('silent! %s/“/"/g')
@@ -163,17 +164,6 @@ keymap("n", "<c-j>", "<cmd>TmuxNavigatedown<cr>", opts)
 keymap("n", "<c-k>", "<cmd>TmuxNavigateUp<cr>", opts)
 
 vim.api.nvim_set_keymap('n', '<leader>r\'', ':lua _G.replace_quotes()<CR>', { noremap = true, silent = true })
-
-
-keymap("n", "<leader>ai", "<cmd>AINewPersistentChat<cr>", opts)
-
--- local custom_config = {
---   model = 'anthropic/claude-3-opus',
--- }
---
--- keymap("n", "<leader>an", function()
---   vim.call("AINewPersistentChatCustom", custom_config)
--- end, opts)
 
 
 -- Function to clean up [ins]
@@ -234,20 +224,13 @@ vim.api.nvim_create_user_command('CleanAndPaste', function() clean_and_paste_vis
 keymap('n', '<leader>p', ':lua CleanIns()<CR>', opts)
 keymap('v', '<leader>p', ':<C-u>CleanAndPaste<CR>', opts)
 
--- set models
-local function set_and_echo_model(model)
-    vim.cmd(string.format(":let g:vim_ai_chat['options']['model'] = '%s'", model))
-    vim.cmd("echo 'now using " .. model .. "'")
-end
+vim.cmd([[
+  function! SynStack()
+    if !exists("*synstack")
+      return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  endfunction
+]])
 
--- Create a user command
-vim.api.nvim_create_user_command('SetAIModel', function(opts)
-    set_and_echo_model(opts.args)
-end, { nargs = 1 })
-
--- Example keybindings
-vim.keymap.set('n', '<leader>mo', ':SetAIModel anthropic/claude-3-opus<CR>', { desc = 'Set AI model to Claude' })
-vim.keymap.set('n', '<leader>ms', ':SetAIModel anthropic/claude-3-sonnet<CR>', { desc = 'Set AI model to Claude' })
-vim.keymap.set('n', '<leader>mg', ':SetAIModel openai/gpt-4o<CR>', { desc = 'Set AI model to GPT 4o' })
-vim.keymap.set('n', '<leader>m1', ':SetAIModel openai/o1-preview<CR>', { desc = 'Set AI model to o1-preview' })
-vim.keymap.set('n', '<leader>mm', ':SetAIModel openai/o1-mini<CR>', { desc = 'Set AI model to o1-mini' })
+vim.keymap.set('n', '<F12>', ':call SynStack()<CR>', { noremap = true, silent = true })

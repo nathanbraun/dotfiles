@@ -5,7 +5,7 @@ highlight RBListsO2 guifg=#c6b6ee
 highlight RBListsO3 guifg=#8fbfdc
 highlight RBListsO4 guifg=#cf6a4c
 highlight RBListsO5 guifg=#ffb964
-highlight RBListsO6 guifg=#cacfd2 
+highlight RBListsO6 guifg=#cacfd2
 highlight RBListsO7 guifg=#f0a0c0
 highlight RBListsO8 guifg=#fad07a
 highlight RBListsO9 guifg=#99ad6a
@@ -26,15 +26,8 @@ highlight RBListsB10 guifg=#8fbfdc
 highlight RBListsB11 guifg=#fad07a
 ]]
 
-local group = vim.api.nvim_create_augroup("mygroup", {clear = true})
-vim.api.nvim_create_autocmd("BufEnter", {group = group, pattern="*.wiki", callback = function() vim.cmd("call rblist#enable()") end, })
+local group = vim.api.nvim_create_augroup("mygroup", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter",
+  { group = group, pattern = "*.wiki", callback = function() vim.cmd("call rblist#enable()") end, })
 
 vim.api.nvim_create_augroup("CustomFileType", { clear = true })
-vim.api.nvim_create_autocmd({"BufEnter"}, {
-  pattern = "*-ai.wiki",
-  group = "CustomFileType",
-  callback = function()
-    -- Set the filetype to aichat
-    vim.bo.filetype = "aichat"
-  end,
-})
