@@ -8,6 +8,9 @@ tags: [week]
 # WEEK {{title}}
 ## 1. PLAN
 ### PRIORITIES
+### MEDIA
+#### READING LIST
+#### PODCAST/AUDIO WHITELIST
 ### BY DAY
 - mon
 - tue
@@ -19,8 +22,12 @@ tags: [week]
 
 ### DEEP WORK DAYS
 ### POMODOROS THIS WEEK
-### 1-2 POMO TASKS
-### NEW BLOCK
+### NEW
+#### NEW [1-2 POMO TASKS](ppqo)
+#### NEW [BLOCK](17h3)
+#### NEW [MEDIA](rkh2)
+#### NEW [WAITING](z4l8)
+#### NEW [SOMEDAY](30x0)
 ### MISC
 
 ## 2. PRESENT/NOTES
@@ -28,12 +35,17 @@ tags: [week]
 
 ## 3. REVIEW
 ### DUMP
+### PROJECTS
 ### POMODOROS WORKED
 ### METRICS
-### PROMPTS
-### BLOCK COMPLETED
-### DAILY
-### PROJECTS
+### [PROMPTS](4c7b)
+###  COMPLETED
+#### COMPLETED [1-2 POMO TASKS](ppqo)
+#### COMPLETED [BLOCK](17h3)
+#### COMPLETED [MEDIA](rkh2)
+#### NO LONGER [WAITING](z4l8)
+#### NO LONGER [SOMEDAY](30x0)
+
+### MISC DAILY
 ### BOOKS
-### KEEP
 ### LAST REVIEW

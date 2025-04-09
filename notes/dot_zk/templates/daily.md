@@ -1,15 +1,15 @@
 ---
 title: {{title}}
-date: {{format-date now}}
 wday: {{extra.dow}}
 tags: [day]
 ---
 
 # 1. PLAN
 ## PRIORITIES
-## KID ACTIVITIES
+## KID/FAMILY ACTIVITIES
 ## TIMEBLOCK
 - 04:00
+- 04:30
 - 05:00
 - 06:00
 - 07:00
@@ -36,12 +36,13 @@ tags: [day]
 
 # 2. NOTES
 ## MISC
-## INTERSITIAL
+## INTERSTITIAL
 
 # 3. REVIEW
 ## PROJECTS
 ## BLOCK DONE
-## CAN WAIT
-## SHOULDN'T WAIT
+## TODO
+### CAN WAIT
+### SHOULDN'T WAIT
 ### NEW BLOCK
-### MISC
+## GRATITUDE
